@@ -1,0 +1,115 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sakkath 2022</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      body {
+          font-family: sans-serif;
+          margin: 0;
+          padding: 15px;
+          background-color: #121214;
+      }
+      .wrap {
+          width: 100%;
+          max-width: 320px;
+          margin: 0 auto;
+      }
+      .profile {
+          text-align: center;
+          color: #FFF;
+      }
+      .photo {
+          border-radius: 50%;
+          max-height: 100px;
+      }
+      .profile_name {
+          font-weight: bold;
+          display: block;
+      }
+      .at {
+          font-size: 13px;
+      }
+      .links ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+      }
+      .links ul li {
+          margin: 14px 0;
+      }
+      .link {
+          padding: 14px;
+          display: block;
+          background-color: #9466FF;
+          text-align: center;
+          text-decoration: none;
+          border-radius: 4px;
+          transition: ease all 0.3s;
+          color: #FFF;
+      }
+      .icon {
+          padding-right: 5px;
+      }
+      .link:hover {
+          opacity: 0.9;
+      }
+      .card {
+          padding: 10px;
+          background-color: #FFF;
+          border-radius: 4px;
+      }
+      .card h3 {
+          margin: 0;
+          color: #202024;
+      }
+      .card p {
+          margin: 5px 0;
+          font-size: 13px;
+          color: #202024;
+      }
+    </style>
+  </head>
+
+  <body translate="no">
+    <div class="wrap">
+      <div class="profile">
+        <img src="logo.jpg" class="photo">
+        <span class="profile_name">Sakkath 2022</span>
+        <span class="at">@sakkath.2022</span>
+      </div>
+      <div class="links">
+        <ul>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+      const sheetURL = 'https://opensheet.elk.sh/1yD7vbX2IhEaQ5yozPDwfjSvuqpElO3wHzIPsA5lsLwc/links';
+
+      const populateLinksList = (links) => {
+        const linksList = document.querySelector('.links > ul')
+        links.forEach((data) => {
+          const item = document.createElement('li')
+          const link = document.createElement('a')
+          link.textContent = data.name
+          if (data.icon) {
+            const icon = document.createElement('i')
+            icon.setAttribute("class", `icon fab fa-${data.icon}`)
+            console.log(icon)
+            link.firstChild = icon
+            link.prepend(icon)
+          }
+          link.setAttribute("class", "link")
+          link.href = data.link
+          item.append(link)
+          linksList.append(item)
+        })
+      }
+
+      fetch(sheetURL)
+  .then(response => response.json())
+  .then(links => populateLinksList(links));
+    </script>
+  </body>
+</html>
